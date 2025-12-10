@@ -25,12 +25,17 @@ schema_view = get_schema_view (
     permission_classes=(permissions.AllowAny,),
 )
 
-router = DefaultRouter()
-router.register(r'users', UserViewSet, basename='user')
-router.register(r'teachers', TeacherViewSet, basename='teacher')
-router.register(r'students', StudentViewSet, basename='student')
-router.register(r'courses', CourseViewSet, basename='course')
-router.register(r'departments', DepartmentViewSet, basename='department')
+router = DefaultRouter ()
+router.register ( r'users', UserViewSet, basename='user' )
+router.register ( r'teachers', TeacherViewSet, basename='teacher' )
+router.register ( r'students', StudentViewSet, basename='student' )
+router.register ( r'courses', CourseViewSet, basename='course' )
+router.register ( r'departments', DepartmentViewSet, basename='department' )
+router.register ( r'day', DayViewSet, basename='day' )
+router.register ( r'rooms', RoomsViewSet, basename='rooms' )
+router.register ( r'table', TableViewSet, basename='table' )
+router.register ( r'table_type', TableTypeViewSet, basename='table_type' )
+router.register ( r'group_student', GroupStudentViewSet, basename='group_student' )
 
 urlpatterns = [
     path ( 'admin/', admin.site.urls ),
