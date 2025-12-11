@@ -29,7 +29,7 @@ class UserManager ( BaseUserManager ) :
 
 class User ( AbstractBaseUser, PermissionsMixin ) :
     username = models.CharField ( max_length=150, unique=True )
-    email = models.EmailField ( blank=True, null=True )
+    email = models.EmailField ( blank=True, null=True, unique=True )
     first_name = models.CharField ( max_length=150, blank=True )
     last_name = models.CharField ( max_length=150, blank=True )
     phone_number = models.CharField ( unique=True, max_length=15, blank=True, null=True )
@@ -42,7 +42,7 @@ class User ( AbstractBaseUser, PermissionsMixin ) :
 
     objects = UserManager ()
 
-    USERNAME_FIELD = 'phone_number'
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
     def __str__(self) :
@@ -93,6 +93,7 @@ class Teacher ( BaseModel ) :
 
 class Student ( BaseModel ) :
     user = models.OneToOneField ( User, on_delete=models.CASCADE, related_name='student_profile' )
+    email = models.EmailField ( max_length=50, null=True, blank=True )
     course = models.ForeignKey ( Course, on_delete=models.SET_NULL, null=True, blank=True, related_name='students' )
     student_id = models.CharField ( max_length=50, unique=True, blank=True, null=True )
     enrollment_date = models.DateField ( null=True, blank=True )
